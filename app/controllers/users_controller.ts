@@ -16,6 +16,4 @@
  *               items:
  *                 $ref: '#/components/schemas/User'
  */
-export default class UsersController {
-
-}
+export default class UsersController {}

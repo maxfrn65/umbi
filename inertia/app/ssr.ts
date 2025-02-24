@@ -1,4 +1,3 @@
-
 import { createInertiaApp } from '@inertiajs/svelte'
 import { render as svelteRender } from 'svelte/server'
 

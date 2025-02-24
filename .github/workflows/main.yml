@@ -32,7 +32,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run ESLint (Frontend & Backend)
-        run: eslint --fix
+        run: npx eslint --fix
 
   test:
     needs: setup
@@ -64,7 +64,7 @@ jobs:
           coverage-reports: coverage/lcov.info
 
   deploy:
-    needs: setup
+    needs: [setup, lint, test, codacy]
     runs-on: ubuntu-latest
     container: ghcr.io/railwayapp/cli:latest
     env:
