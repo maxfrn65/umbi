@@ -27,6 +27,9 @@ jobs:
       - name: Afficher les dépendances installées
         run: npm list --depth=0
 
+      - name: Lister les fichiers du repo
+        run: ls -R
+
   lint:
     needs: setup
     runs-on: ubuntu-latest
@@ -34,8 +37,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run ESLint (Frontend & Backend)
-        run: npx eslint --fix .
+      - name: Debug ESLint
+        run: DEBUG=eslint:* npx eslint --fix .
 
   test:
     needs: setup
