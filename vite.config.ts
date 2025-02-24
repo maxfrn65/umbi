@@ -5,7 +5,10 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 import adonisjs from '@adonisjs/vite/client'
 
 export default defineConfig({
-  plugins: [inertia({ ssr: { enabled: true, entrypoint: 'inertia/app/ssr.ts' } }), svelte({ compilerOptions: { hydratable: true } }), adonisjs({ entrypoints: ['inertia/app/app.ts'], reload: ['resources/views/**/*.edge'] })],
+  plugins: [
+    inertia({ ssr: { enabled: true, entrypoint: 'inertia/app/ssr.ts' } }),
+    adonisjs({ entrypoints: ['inertia/app/app.ts'], reload: ['resources/views/**/*.edge'] }),
+  ],
 
   /**
    * Define aliases for importing modules from

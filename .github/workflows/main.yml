@@ -1,0 +1,94 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+  lint:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run ESLint (Frontend & Backend)
+        run: pnpm run lint
+
+  test:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Backend Tests
+        run: pnpm run test:backend
+
+      - name: Run Frontend Tests with Cypress
+        uses: cypress-io/github-action@v6
+        with:
+          install: false
+          runTests: true
+
+  swagger:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate Swagger Documentation
+        run: pnpm run generate-swagger
+
+      - name: Upload Swagger JSON
+        uses: actions/upload-artifact@v4
+        with:
+          name: swagger-docs
+          path: path/to/swagger.json
+
+  codacy:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Upload coverage to Codacy
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          project-token: cd6ec3b58a684210bb5a7e994e11a84c
+          coverage-reports: coverage/lcov.info
+
+  deploy:
+    needs: [lint, test, swagger, codacy]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Railway
+        uses: railwayapp/cli-action@v2
+        with:
+          railway_token: ${{ secrets.RAILWAY_TOKEN }}
+          environment: production
+          service: backend
