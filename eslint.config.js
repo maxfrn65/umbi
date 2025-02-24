@@ -1,2 +1,5 @@
-import { configApp } from '@adonisjs/eslint-config'
-export default configApp()
+const adonisConfig = require('@adonisjs/eslint-config');
+
+module.exports = [
+  adonisConfig,
+];
