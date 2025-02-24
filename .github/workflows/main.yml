@@ -24,6 +24,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Afficher les dépendances installées
+        run: npm list --depth=0
+
   lint:
     needs: setup
     runs-on: ubuntu-latest
