@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import { getDirname } from '@adonisjs/core/helpers'
 import inertia from '@adonisjs/inertia/client'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
 import adonisjs from '@adonisjs/vite/client'
 
 export default defineConfig({
