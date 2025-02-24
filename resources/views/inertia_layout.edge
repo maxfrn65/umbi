@@ -62,10 +62,14 @@
 
   @vite(['inertia/app/app.ts', `inertia/pages/${page.component}.svelte`])
   @inertiaHead()
+
 </head>
 
 <body class="min-h-screen w-screen font-sans">
-  @inertia()
+  <Theme>
+
+    @inertia()
+  </Theme>
 </body>
 
 </html>

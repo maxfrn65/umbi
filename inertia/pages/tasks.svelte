@@ -10,7 +10,7 @@
 
 <h1>Tasks</h1>
 <pre>
-  {allTasks.value}
+  {JSON.stringify(allTasks)}
 </pre>
 
 <style>
