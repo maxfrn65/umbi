@@ -80,6 +80,7 @@ jobs:
           coverage-reports: coverage/lcov.info
 
   deploy:
+    needs: setup
     runs-on: ubuntu-latest
     container: ghcr.io/railwayapp/cli:latest
     env:
