@@ -34,8 +34,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Installer ESLint et plugins manuellement
+        run: npm install --save-dev eslint@8 @adonisjs/eslint-config
+
       - name: Run ESLint
-        run: npx eslint --fix .
+        run: node_modules/.bin/eslint --fix .
 
   test:
     needs: setup
