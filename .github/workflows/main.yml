@@ -24,18 +24,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Lister les fichiers du repo
-        run: ls -R
-
   lint:
     needs: setup
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Installer ESLint et plugins manuellement
-        run: npm install --save-dev eslint@8 @adonisjs/eslint-config
 
       - name: Run ESLint
         run: node_modules/.bin/eslint --fix .
