@@ -2,8 +2,6 @@
 /// <reference path="../../config/inertia.ts" />
 
 import '../css/app.css'
-import '@radix-ui/themes/styles.css'
-
 import { createInertiaApp } from '@inertiajs/svelte'
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
 import { hydrate, mount } from 'svelte'

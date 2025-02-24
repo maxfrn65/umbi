@@ -42,29 +42,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Backend Tests
-        run: npm run test:backend
+        run: npm run test
 
       - name: Run Frontend Tests with Cypress
         uses: cypress-io/github-action@v6
         with:
           install: false
           runTests: true
-
-  swagger:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Generate Swagger Documentation
-        run: npm run generate-swagger
-
-      - name: Upload Swagger JSON
-        uses: actions/upload-artifact@v4
-        with:
-          name: swagger-docs
-          path: path/to/swagger.json
 
   codacy:
     needs: setup
