@@ -32,7 +32,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run ESLint (Frontend & Backend)
-        run: npx eslint --fix .
+        run: node_modules/.bin/eslint --fix .
 
   test:
     needs: setup

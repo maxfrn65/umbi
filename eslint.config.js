@@ -1,5 +1,2 @@
-import adonisConfig from '@adonisjs/eslint-config';
-
-export default [
-  adonisConfig,
-];
+import { configApp } from '@adonisjs/eslint-config'
+export default configApp()
